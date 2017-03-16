@@ -1,5 +1,10 @@
 import os, re
 
+
+try:
+    os.makedirs('reviews')
+except:
+    pass
 fr = open('reviews.txt', encoding = 'utf-8')
 text = fr.read()
 fr.close()
