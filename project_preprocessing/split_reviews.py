@@ -1,6 +1,5 @@
 import os, re
 
-
 try:
     os.makedirs('reviews')
 except:
