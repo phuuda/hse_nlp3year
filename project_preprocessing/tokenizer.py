@@ -2,7 +2,8 @@ import re
 import os
 import csv
 
-token_file = open('tokens.csv', 'w', encoding = 'utf-8')
+token_file2 = open('tokens.txt', 'w', encoding = 'utf-8')
+
 abbrev_file = open('abbreviations.txt', 'r', encoding = 'utf-8')
 
 s1 = abbrev_file.read()
@@ -10,7 +11,7 @@ abbreviations = s1.split() # keep with .
 
 time_stamp = '[0-9]{1,2}:[0-9]{1,2}'
 
-punctuation = ['\.', ',', '\"', '?!', '???', '?', '!!!', '!', '[а-яА-Я](:)',
+punctuation = ['\.', '\,', '\"', '?!', '???', '?', '!!!', '!', '[а-яА-Я](:)',
                '…', '—', '©']
 
 doc_id = 1
@@ -37,13 +38,12 @@ for root, dirs, files in os.walk('./reviews_clean'):
 
                         token = x.replace(punctuation[i], '')
 
-                        fields = [doc_id, token_id, token]
-                        additional_fields = [doc_id, additional_token_id,
-                                             additional_token]
+                        fields = str(doc_id) + '\t' + str(token_id) + '\t' + token + '\n'
+                        additional_fields = str(doc_id) + '\t' + str(additional_token_id) + '\t' + additional_token + '\n'
 
-                        writer = csv.writer(token_file)
-                        writer.writerow(fields)
-                        writer.writerow(additional_fields)
+
+                        token_file2.write(fields)
+                        token_file2.write(additional_fields)
 
                         token_id += 2
                         punc_count += 1
@@ -52,10 +52,10 @@ for root, dirs, files in os.walk('./reviews_clean'):
                     # check other conditions ?
 
                     token = x
-                    fields = [doc_id, token_id, token]
+                    fields = str(doc_id) + '\t' + str(token_id) + '\t' + token + '\n'
 
-                    writer = csv.writer(token_file)
-                    writer.writerow(fields)
+
+                    token_file2.write(fields)
 
                     token_id += 1
                     
