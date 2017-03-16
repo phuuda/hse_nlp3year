@@ -5,8 +5,11 @@ def normalize_text(text):
     normtext = re.sub('(т\.) (к\.)|(д\.)|(ч\.)|(п\.)|(е\.)', '\\1\\2', normtext)
     normtext = re.sub('(P\.) (S\.)', '\\1\\2', normtext)
     normtext = re.sub('[\»\«]', '"', normtext)
+    normtext = re.sub('\(', ' (', normtext)
+    normtext = re.sub('\)', ') ', normtext)
+    normtext = re.sub('\.{2,}', '… ', normtext)
     normtext = re.sub('[\t]', ' ', normtext)
-    normtext = re.sub('\s{2}', ' ', normtext)
+    normtext = re.sub(' {2,}', ' ', normtext)
     return normtext
 
 def clean_text(text):
