@@ -3,7 +3,7 @@ import os, re
 fr = open('reviews.txt', encoding = 'utf-8')
 text = fr.read()
 fr.close()
-reviews = re.findall('.+?\d\d\:\d\d\n', text, flags=re.DOTALL)
+reviews = re.findall('.+?\| \d\d\:\d\d\n', text, flags=re.DOTALL)
 l = 0
 for i in range(len(reviews)):
     review = re.sub('^.+?\n\n', '', reviews[i], flags=re.DOTALL)
