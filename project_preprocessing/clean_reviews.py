@@ -1,19 +1,20 @@
 import os, re
 
 def normalize_text(text):
-    normtext = re.sub('( - )|(-[\s\n])|(\n-)', ' — ', text)
-    normtext = re.sub('(т\.) (к\.)|(д\.)|(ч\.)|(п\.)|(е\.)', '\\1\\2', normtext)
+    normtext = re.sub('( - )|(-[ \n])|([ \n]-)|(\n-)', ' — ', text)
+    normtext = re.sub('(т\.) ((к\.)|(д\.)|(ч\.)|(п\.)|(е\.))', '\\1\\2', normtext)
     normtext = re.sub('(P\.) (S\.)', '\\1\\2', normtext)
     normtext = re.sub('[\»\«]', '"', normtext)
     normtext = re.sub('\(', ' (', normtext)
     normtext = re.sub('\)', ') ', normtext)
     normtext = re.sub('\.{2,}', '… ', normtext)
+    normtext = re.sub('\(с\)', '©', normtext)
     normtext = re.sub('[\t]', ' ', normtext)
     normtext = re.sub(' {2,}', ' ', normtext)
     return normtext
 
 def clean_text(text):
-    cleantext = re.sub('D@ABBE', '', text) #кто-то оставил свой ник внутри рецензии
+    cleantext = re.sub('— D@ABBE', '', text) #кто-то оставил свой ник внутри рецензии
     cleantext = re.sub('\n\d{1,2} из \d{1,2}[\n$]', '\n', cleantext, flags=re.DOTALL) #10 из 10
     #cleantext = re.sub('(т\.к\.)', 'т##к##', cleantext)
     #cleantext = re.sub('(P\.S\.)', 'P##S##', cleantext)
