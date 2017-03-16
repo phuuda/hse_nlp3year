@@ -9,7 +9,7 @@ def normalize_text(text):
     normtext = re.sub('\.{2,}', '… ', normtext) #нормализация многоточих
     normtext = re.sub('!{2,}', '!!!', normtext) #нормализация повторяющихся воскл./вопр. знаков
     normtext = re.sub('\?{2,}', '???', normtext) 
-    normtext = re.sub('(!+\?+)|(\?+!+)', '!?', normtext)
+    normtext = re.sub('(!+\?+)|(\?+!+)', '?!', normtext)
     normtext = re.sub('\(с\)', '©', normtext) #нормализация знака ©
     normtext = re.sub('\t', ' ', normtext)
     normtext = re.sub(' {2,}', ' ', normtext) #нормализация пробелов
