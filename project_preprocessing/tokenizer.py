@@ -13,8 +13,8 @@ abbreviations = s1.split() # keep with .
 
 time_stamp = '[0-9]{1,2}:[0-9]{1,2}'
 
-punctuation = ['\.', '\,', '\"', '\?\!', '\?\?\?', '\?', '\!\!\!', '\!', '\:', '\(', '\)',
-               '…', '—', '©']
+punctuation = ['\.', '\,', '\"', '\?\!', '\?\?\?', '\?', '\!\!\!', '\!', '\:', '\;', '\(', '\)',
+               '…', '—', '©', '\/']
 
 doc_id = 1
 for root, dirs, files in os.walk('./reviews_clean'):
@@ -23,13 +23,13 @@ for root, dirs, files in os.walk('./reviews_clean'):
             f = open(root + '/' + file, 'r', encoding = 'utf-8')
             s2 = f.read()
 
-            for i in range(9):
+            for i in range(len(punctuation)):
                 search = punctuation[i]
                 punct_in_s2 = re.findall(search, s2)
                 
                 if punct_in_s2:
                     for m in punct_in_s2:
-                        s2 = s2.replace(m, ' ' + m)
+                        s2 = s2.replace(m, ' ' + m + ' ')
 
                             # ',' -> ' ,'
             
