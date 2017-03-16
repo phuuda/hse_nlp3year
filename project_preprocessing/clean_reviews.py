@@ -2,6 +2,7 @@ import os, re
 
 def normalize_text(text):
     normtext = re.sub('( - )|(-[ \n])|([ \n]-)|(\n-)', ' — ', text) #нормализация тире
+    normtext = re.sub('— х ', '-х ', normtext)
     normtext = re.sub('(т\.) ((к\.)|(д\.)|(ч\.)|(п\.)|(е\.))', '\\1\\2', normtext) #частые сокращения
     normtext = re.sub('([Pp]\. [Ss]\.)|(ps )|(PS )', 'P.S. ', normtext)
     normtext = re.sub('[«»“„]', '"', normtext) #нормализация кавычек
