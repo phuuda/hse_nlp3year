@@ -3,13 +3,13 @@ import os, re
 def normalize_text(text):
     normtext = re.sub('( - )|(-[ \n])|([ \n]-)|(\n-)', ' — ', text) #нормализация тире
     normtext = re.sub(' — х ', '-х ', normtext)
-    normtext = re.sub('(т\.) ((к\.)|(д\.)|(ч\.)|(п\.)|(е\.))', '\\1\\2', normtext) #частые сокращения
-    normtext = re.sub('([Pp]\. [Ss]\.)|(ps )|(PS )', 'P.S. ', normtext)
+    normtext = re.sub('([Тт]\.) ((к\.)|(д\.)|(ч\.)|(п\.)|(е\.)|(з\.))', '\\1\\2', normtext) #частые сокращения
+    normtext = re.sub('([Pp]\. ?[Ss]\.?:?)|(ps )|(PS )', 'P.S. ', normtext)
     normtext = re.sub('[«»“„]', '"', normtext) #нормализация кавычек
     normtext = re.sub('\.{2,}', '… ', normtext) #нормализация многоточих
     normtext = re.sub('!{2,}', '!!!', normtext) #нормализация повторяющихся воскл./вопр. знаков
     normtext = re.sub('\?{2,}', '???', normtext) 
-    normtext = re.sub('(!+\?+)|(\?+!+)', '!?', normtext)
+    normtext = re.sub('(!+\?+)|(\?+!+)', '?!', normtext)
     normtext = re.sub('\(с\)', '©', normtext) #нормализация знака ©
     normtext = re.sub('\t', ' ', normtext)
     normtext = re.sub(' {2,}', ' ', normtext) #нормализация пробелов
@@ -24,6 +24,7 @@ def clean_text(text):
     return cleantext
 
 path = 'reviews'
+texts = ''
 if os.path.exists(path):
     new_path = path + '_clean/'
     try:
@@ -39,7 +40,13 @@ if os.path.exists(path):
             text2 = clean_text(text2)
             print(i)
             print(text2)
+            texts += text2 + '\n'
             print('-----------------------------------------------------------------')
-            fw = open('reviews_clean/' + i, 'w', encoding = 'utf-8')
-            fw.write(text2)
-            fw.close()            
+            #fw = open('reviews_clean/' + i, 'w', encoding = 'utf-8')
+            #fw.write(text2)
+            #fw.close() 
+
+fw = open('texts.txt', 'w', encoding = 'utf-8')
+fw.write(texts)
+fw.close() 
+   
