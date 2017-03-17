@@ -32,20 +32,9 @@ for root, dirs, files in os.walk('./reviews_clean'):
             for x in text:
                 fields = str(doc_id) + '\t' + str(token_id) + '\t' + x + '\n'
                 tokens += fields
-
-                token_id += 1
                 
-                #if punc_count == 0:
-                    # check other conditions ?
-
-                    #token = x
-                    #fields = str(doc_id) + '\t' + str(token_id) + '\t' + token + '\n'
-
-
-                    #token_file2.write(str(doc_id) + '\t' + str(token_id) + '\t' + token + '\n')
-
-                    #token_id += 1
-                       
+                token_id += 1 
+                
             doc_id += 1
             
 token_file = open('tokens.txt', 'w', encoding = 'utf-8')
