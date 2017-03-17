@@ -13,7 +13,6 @@ for i in range(len(reviews)):
     review = re.sub('^.+?\n\n', '', reviews[i], flags=re.DOTALL)
     review = re.sub('\nпрямая ссылка.+?$', '', review, flags=re.DOTALL)
     review = re.sub('\n{2,}', '\n', review, flags=re.DOTALL)
-    review = review.strip()
     print(review)
     print('-----------------------------------------------------------------')
     l += len(review.split())

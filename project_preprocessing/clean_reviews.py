@@ -20,9 +20,11 @@ def clean_text(text):
     cleantext = re.sub('— D@ABBE', '', text) #кто-то оставил свой ник внутри рецензии
     cleantext = re.sub('Typewrited by Hannabar in 13\/03\/2017\.', '', text) #странная строчка осталась
     #cleantext = re.sub('\n[\d\,]{1,2} из \d{1,2}[\n$]', '\n', cleantext, flags=re.DOTALL) #10 из 10
+    #cleantext = re.sub('"', '', cleantext) #удаление кавычек?
     return cleantext
 
 path = 'reviews'
+texts = ''
 if os.path.exists(path):
     new_path = path + '_clean/'
     try:
@@ -38,7 +40,13 @@ if os.path.exists(path):
             text2 = clean_text(text2)
             print(i)
             print(text2)
+            texts += text2 + '\n'
             print('-----------------------------------------------------------------')
-            fw = open('reviews_clean/' + i, 'w', encoding = 'utf-8')
-            fw.write(text2)
-            fw.close()            
+            #fw = open('reviews_clean/' + i, 'w', encoding = 'utf-8')
+            #fw.write(text2)
+            #fw.close() 
+
+fw = open('texts.txt', 'w', encoding = 'utf-8')
+fw.write(texts)
+fw.close() 
+   
